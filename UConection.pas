@@ -547,7 +547,7 @@ begin
       //Para manejar el autoincrementable
       if Option = pUpdate then
         Dataset.BeforePost := gBeforePost
-      else If Option = pUpdate then
+      else If Option = pReadOnly then
       begin
         Dataset.BeforePost := nil;
         Dataset.ReadOnly := True;
@@ -674,13 +674,14 @@ end;
 procedure TUDMConection.reconectarConn;
 begin
   try
-    conBd.Ping;
-  except
-    on E: Exception do
-    begin
-      MsgBox.ShowModal('Auto recuperación de conexión al servidor.','Ha ocurrido un error con el conector de datos, para intentar reconectarte presiona [Reconfigurar]', cmtConection, [cMbReconfig]);
-      //if MsgBox.ShowModal('¿Reconectar?', '¿Reconectar?', cmtInformation, [cMbYes, cmbNo]) = mrYes then
-      //begin
+    FrmInicio.tmr1.Enabled := False;
+    try
+      conBd.Ping;
+    except
+      on E: Exception do
+      begin
+        //MsgBox.ShowModal('Auto recuperación de conexión al servidor.','Ha ocurrido un error con el conector de datos, para intentar reconectarte presiona [Reconfigurar]', cmtConection, [cMbReconfig]);
+        MessageDlg('Ha ocurrido un error con el conector de datos, para intentar reconectarte presiona [ok]', mtInformation, [mbOK], 0);
         try
           conBd.Disconnect;
         except
@@ -697,8 +698,10 @@ begin
           on e:exception do
             ShowMessage(e.Message);
         end;
-      //end;
+      end;
     end;
+  finally
+    FrmInicio.tmr1.Enabled := True;
   end;
 end;
 
@@ -733,7 +736,7 @@ begin
       //Para manejar el autoincrementable
       if Option = pUpdate then
         Dataset.BeforePost := gBeforePost
-      else If Option = pUpdate then
+      else If Option = pReadOnly then
       begin
         Dataset.BeforePost := nil;
         Dataset.ReadOnly := True;

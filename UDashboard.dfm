@@ -56,7 +56,7 @@ object FrmDashboard: TFrmDashboard
           Name = 'ChartPane 0'
           Options = []
           Range.StartDate = 42480.785650034720000000
-          Range.RangeTo = 3
+          Range.RangeTo = -1
           Series.SerieValueTotals = True
           Series = <
             item
@@ -632,17 +632,18 @@ object FrmDashboard: TFrmDashboard
       Height = 142
       Align = alBottom
       BevelOuter = bvNone
-      Caption = 'Panel2'
       TabOrder = 3
       object Panel1: TPanel
         Left = 0
         Top = 0
-        Width = 295
+        Width = 293
         Height = 142
         Align = alLeft
         Anchors = [akLeft, akTop, akRight, akBottom]
         BevelOuter = bvNone
         TabOrder = 0
+        ExplicitLeft = 3
+        ExplicitTop = -3
         object cxGboxRetornadas: TcxGroupBox
           AlignWithMargins = True
           Left = 5
@@ -659,7 +660,7 @@ object FrmDashboard: TFrmDashboard
           StyleHot.LookAndFeel.SkinName = 'Whiteprint'
           TabOrder = 0
           Height = 60
-          Width = 285
+          Width = 283
           object Lbl5: TcxLabel
             AlignWithMargins = True
             Left = 51
@@ -974,7 +975,7 @@ object FrmDashboard: TFrmDashboard
           end
           object DbLbl1: TcxDBLabel
             AlignWithMargins = True
-            Left = 230
+            Left = 228
             Top = 18
             Margins.Right = 10
             Align = alRight
@@ -990,7 +991,7 @@ object FrmDashboard: TFrmDashboard
             Transparent = True
             Height = 29
             Width = 42
-            AnchorX = 272
+            AnchorX = 270
           end
         end
         object cxGboxLiquidadas: TcxGroupBox
@@ -1009,7 +1010,7 @@ object FrmDashboard: TFrmDashboard
           StyleHot.LookAndFeel.SkinName = 'Whiteprint'
           TabOrder = 1
           Height = 60
-          Width = 285
+          Width = 283
           object img2: TcxImage
             AlignWithMargins = True
             Left = 6
@@ -1182,7 +1183,7 @@ object FrmDashboard: TFrmDashboard
           end
           object DbLblLiquidadas: TcxDBLabel
             AlignWithMargins = True
-            Left = 213
+            Left = 211
             Top = 18
             Margins.Right = 10
             Align = alRight
@@ -1198,14 +1199,14 @@ object FrmDashboard: TFrmDashboard
             Transparent = True
             Height = 29
             Width = 59
-            AnchorX = 272
+            AnchorX = 270
           end
         end
       end
       object pnl3: TPanel
-        Left = 295
+        Left = 293
         Top = 0
-        Width = 271
+        Width = 273
         Height = 142
         Align = alClient
         BevelOuter = bvNone
@@ -1226,7 +1227,7 @@ object FrmDashboard: TFrmDashboard
           StyleHot.LookAndFeel.SkinName = 'Whiteprint'
           TabOrder = 0
           Height = 60
-          Width = 261
+          Width = 263
           object Lbl3: TcxLabel
             AlignWithMargins = True
             Left = 51
@@ -1541,7 +1542,7 @@ object FrmDashboard: TFrmDashboard
           end
           object DbLblQuejas: TcxDBLabel
             AlignWithMargins = True
-            Left = 179
+            Left = 181
             Top = 18
             Margins.Right = 10
             Align = alRight
@@ -1557,7 +1558,7 @@ object FrmDashboard: TFrmDashboard
             Transparent = True
             Height = 29
             Width = 69
-            AnchorX = 248
+            AnchorX = 250
           end
         end
         object cxGboxObjetadas: TcxGroupBox
@@ -1576,7 +1577,7 @@ object FrmDashboard: TFrmDashboard
           StyleHot.LookAndFeel.SkinName = 'Whiteprint'
           TabOrder = 1
           Height = 60
-          Width = 261
+          Width = 263
           object img1: TcxImage
             AlignWithMargins = True
             Left = 6
@@ -1962,7 +1963,7 @@ object FrmDashboard: TFrmDashboard
           end
           object DbLblObjetadas: TcxDBLabel
             AlignWithMargins = True
-            Left = 193
+            Left = 195
             Top = 18
             Margins.Right = 10
             Align = alRight
@@ -1978,7 +1979,7 @@ object FrmDashboard: TFrmDashboard
             Transparent = True
             Height = 29
             Width = 55
-            AnchorX = 248
+            AnchorX = 250
           end
         end
       end

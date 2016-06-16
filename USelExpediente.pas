@@ -20,7 +20,7 @@ uses
   dxSkinValentine, dxSkinVS2010, dxSkinWhiteprint, dxSkinXmas2008Blue,
   cxContainer, cxEdit, cxListView, dxSkinsdxBarPainter, dxBar, cxClasses, DB,
   ZAbstractRODataset, ZAbstractDataset, ZDataset, umsgbox, UConection, Uni,
-  MemDS, DBAccess;
+  MemDS, DBAccess, cxTextEdit, cxMaskEdit, cxDropDownEdit;
 
 type
   TFrmSelExpediente = class(TForm)
@@ -42,9 +42,11 @@ type
     dxButtonOpcional: TdxBarLargeButton;
     dxButtonDetalle: TdxBarLargeButton;
     btnAbrir: TdxBarLargeButton;
+    cbbVista: TcxComboBox;
     procedure FormShow(Sender: TObject);
     procedure btnAbrirClick(Sender: TObject);
     procedure lstExpedientesDblClick(Sender: TObject);
+    procedure cbbVistaPropertiesChange(Sender: TObject);
   private
     //fMat: TFrmMaterialesxFolios;
     { Private declarations }
@@ -70,6 +72,11 @@ begin
   FrmMaterialesxFolios.FormStyle := fsMDIChild;
   FrmMaterialesxFolios.visible := True;
   FrmMaterialesxFolios.Show;
+end;
+
+procedure TFrmSelExpediente.cbbVistaPropertiesChange(Sender: TObject);
+begin
+  lstExpedientes.ViewStyle := TViewStyle(cbbVista.ItemIndex);
 end;
 
 procedure TFrmSelExpediente.CrearExpedientes;
@@ -118,6 +125,7 @@ begin
         zPersonal.Open;
 
       CrearExpedientes;
+      cbbVista.ItemIndex := 0;
     finally
       AutoFocus(TForm(self));
       Screen.Cursor := Cursor;
@@ -134,7 +142,10 @@ end;
 
 procedure TFrmSelExpediente.lstExpedientesDblClick(Sender: TObject);
 begin
-  btnAbrirClick(nil);
+  if lstExpedientes.SelCount > 0 then
+  begin
+    btnAbrirClick(nil);
+  end;
 end;
 
 end.

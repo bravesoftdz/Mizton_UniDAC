@@ -1403,6 +1403,7 @@ end;
 procedure TFrmMaterialesxFolios.FormShow(Sender: TObject);
 var
   Cursor: TCursor;
+  sListaOT: String;
 begin
   try
     Cursor := Screen.Cursor;
@@ -1434,6 +1435,24 @@ begin
           zDatos.Refresh
         else
           zDatos.Open;
+
+        zDatos.First;
+        while not zDatos.Eof do
+        begin
+          sListaOT := sListaOT  + zDatos.FieldByName('IdFolio').AsString + ',';
+          zDatos.Next;
+        end;
+
+        //*CARGA LAS ORDENES Y OBTENEMOS LA LISTA PARA LOS MATERIALES DE LAS MISMAS*/
+        zMaterial.ReadOnly := False;//*añado esta pastilla para poder editar las columnas*/
+        if not FiltrarDataset(zMaterial, 'IdFolio', [sListaOT]) then
+          raise Exception.Create(pErrorFiltrar + '[mt_materialxfolio]');
+
+        if zMaterial.Active then
+          zMaterial.Refresh
+        else
+          zMaterial.Open;
+
       finally
         zDatos.AfterScroll := zDatosAfterScroll;
         if zDatos.Active then
@@ -1465,14 +1484,20 @@ begin
     zMaterial.UpdateObject := nil;
 
 
-    if not FiltrarDataset(zMaterial, 'IdFolio', [zDatos.FieldByName('IdFOlio').AsString]) then
-      raise Exception.Create(pErrorFiltrar + '[mt_materialxfolio]');
-
-    if zMaterial.Active then
-      zMaterial.Refresh
-    else
-      zMaterial.Open;
-
+//    if not FiltrarDataset(zMaterial, 'IdFolio', [zDatos.FieldByName('IdFOlio').AsString]) then
+//      raise Exception.Create(pErrorFiltrar + '[mt_materialxfolio]');
+//
+//    if zMaterial.Active then
+//      zMaterial.Refresh
+//    else
+//      zMaterial.Open;
+    try
+      zMaterial.Filtered := False;
+      zMaterial.Filter := 'IdFolio = ' + zDatos.FieldByName('IdFolio').AsString;
+      zMaterial.Filtered := True;
+    except
+      zMaterial.Filtered := False;
+    end;
 
     dxbrMateriales.Visible := (Not (zDatos.Active and (zDatos.FieldByName('EstatusVale').AsString <> 'Abierto')));
     cxColCantidad.Properties.ReadOnly :=  (zDatos.Active and (zDatos.FieldByName('EstatusVale').AsString <> 'Abierto')) or (zDatos.Active and (zDatos.FieldByName('EstatusCobro').AsString = 'Autorizado'));

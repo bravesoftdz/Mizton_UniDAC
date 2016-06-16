@@ -378,7 +378,7 @@ begin
       zOtros.Post;
 
       zEncr.Close;
-      zEncr.SQL.Text := 'UPDATE master_usuarios SET contrasena = AES_ENCRYPT('+quotedstr(cxTextContrasena.Text)+','+quotedstr('AES2016')+') WHERE idUsuario = ' + zUsuario.FieldByName('IdUsuario').AsString;
+      zEncr.SQL.Text := 'UPDATE master_usuarios SET contrasena = AES_ENCRYPT('+quotedstr(cxTextOContrasena.Text)+','+quotedstr('AES2016')+') WHERE idUsuario = ' + zOtros.FieldByName('IdUsuario').AsString;
       zEncr.ExecSQL;
 
       cxPage2.ActivePage := cxTab1;

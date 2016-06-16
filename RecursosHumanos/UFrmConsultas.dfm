@@ -25,6 +25,7 @@ object FrmConsultas: TFrmConsultas
     Align = alLeft
     ParentBackground = False
     TabOrder = 0
+    ExplicitLeft = 2
     object cxGboxFecha: TcxGroupBox
       AlignWithMargins = True
       Left = 11
@@ -37,9 +38,9 @@ object FrmConsultas: TFrmConsultas
       Width = 291
       object dxLayControl1: TdxLayoutControl
         Left = 3
-        Top = 16
+        Top = 22
         Width = 285
-        Height = 166
+        Height = 160
         Align = alClient
         TabOrder = 0
         LayoutLookAndFeel = UDMConection.dxStyleForms
@@ -178,9 +179,9 @@ object FrmConsultas: TFrmConsultas
       Width = 291
       object dxLayoutControl1: TdxLayoutControl
         Left = 3
-        Top = 16
+        Top = 22
         Width = 285
-        Height = 54
+        Height = 48
         Align = alClient
         TabOrder = 0
         LayoutLookAndFeel = UDMConection.dxStyleForms
@@ -237,9 +238,9 @@ object FrmConsultas: TFrmConsultas
       Width = 291
       object dxLayoutControl2: TdxLayoutControl
         Left = 3
-        Top = 16
+        Top = 22
         Width = 285
-        Height = 54
+        Height = 48
         Align = alClient
         TabOrder = 0
         LayoutLookAndFeel = UDMConection.dxStyleForms
@@ -295,6 +296,22 @@ object FrmConsultas: TFrmConsultas
       TabOrder = 7
       OnClick = btnImprimirClick
     end
+    object btnAcumSemanal: TcxButton
+      AlignWithMargins = True
+      Left = 11
+      Top = 520
+      Width = 291
+      Height = 25
+      Margins.Left = 10
+      Margins.Top = 10
+      Margins.Right = 10
+      Align = alTop
+      Caption = '&Rep. Acumulado Semanal'
+      TabOrder = 8
+      OnClick = btnAcumSemanalClick
+      ExplicitLeft = 17
+      ExplicitTop = 558
+    end
   end
   object cxSplitter1: TcxSplitter
     Left = 313
@@ -311,6 +328,7 @@ object FrmConsultas: TFrmConsultas
     Align = alClient
     DataSource = dsDatos
     Groups = <>
+    OptionsData.VariationNullIgnore = False
     OptionsView.ColumnGrandTotalText = 'Subtotal'
     OptionsView.RowGrandTotalText = 'Total'
     TabOrder = 2

@@ -17,20 +17,18 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
   PixelsPerInch = 96
   TextHeight = 13
   object dxDockSite1: TdxDockSite
-    Left = 301
+    Left = 300
     Top = 131
-    Width = 1153
+    Width = 1154
     Height = 612
     Align = alClient
-    ExplicitWidth = 1034
-    ExplicitHeight = 544
     DockingType = 5
-    OriginalWidth = 1153
+    OriginalWidth = 1154
     OriginalHeight = 612
     object dxLayoutDockSite1: TdxLayoutDockSite
       Left = 0
       Top = 0
-      Width = 763
+      Width = 764
       Height = 612
       DockingType = 0
       OriginalWidth = 300
@@ -38,7 +36,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       object dxlytdckst1: TdxLayoutDockSite
         Left = 0
         Top = 0
-        Width = 763
+        Width = 764
         Height = 612
         DockingType = 0
         OriginalWidth = 300
@@ -47,7 +45,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       object dxDockGrid: TdxDockPanel
         Left = 0
         Top = 0
-        Width = 763
+        Width = 764
         Height = 612
         AllowFloating = False
         AutoHide = False
@@ -62,14 +60,12 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
           AlignWithMargins = True
           Left = 3
           Top = 49
-          Width = 751
-          Height = 527
+          Width = 750
+          Height = 530
           Align = alClient
           TabOrder = 0
           RootLevelOptions.DetailTabsPosition = dtpTop
           OnActiveTabChanged = cxGridGralActiveTabChanged
-          ExplicitWidth = 632
-          ExplicitHeight = 459
           object cxGridDatos: TcxGridDBTableView
             PopupMenu = dxPopupGrid
             Navigator.Buttons.CustomButtons = <>
@@ -205,13 +201,13 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
           Caption = 'Informaci'#243'n de apoyo'
           TabOrder = 1
           Height = 46
-          Width = 757
+          Width = 756
           object Panel1: TPanel
             AlignWithMargins = True
             Left = 92
             Top = 18
             Width = 19
-            Height = 21
+            Height = 15
             Align = alLeft
             BevelOuter = bvNone
             Color = 3054090
@@ -231,12 +227,9 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             Style.Font.Style = [fsBold]
             Style.IsFontAssigned = True
             Transparent = True
-            ExplicitLeft = 173
-            ExplicitTop = 4
-            ExplicitHeight = 40
           end
           object LblLeyendaVale: TcxLabel
-            Left = 421
+            Left = 420
             Top = 15
             Align = alRight
             Caption = '*El vale est'#225' cerrado no se puede realizar ninguna edici'#243'n.'
@@ -248,16 +241,13 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             Style.Font.Style = [fsBold, fsItalic]
             Style.IsFontAssigned = True
             Transparent = True
-            ExplicitLeft = 634
-            ExplicitTop = 4
-            ExplicitHeight = 40
           end
           object Panel2: TPanel
             AlignWithMargins = True
             Left = 6
             Top = 18
             Width = 19
-            Height = 21
+            Height = 15
             Align = alLeft
             BevelOuter = bvNone
             Color = 8421631
@@ -277,15 +267,12 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             Style.Font.Style = [fsBold]
             Style.IsFontAssigned = True
             Transparent = True
-            ExplicitLeft = 27
-            ExplicitTop = 4
-            ExplicitHeight = 40
           end
         end
       end
     end
     object dxDockDatos: TdxDockPanel
-      Left = 763
+      Left = 764
       Top = 0
       Width = 390
       Height = 612
@@ -295,43 +282,35 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       CaptionButtons = [cbHide]
       CustomCaptionButtons.Buttons = <>
       TabsProperties.CustomButtons.Buttons = <>
-      ExplicitLeft = 644
-      ExplicitHeight = 544
       DockingType = 3
       OriginalWidth = 390
       OriginalHeight = 140
       object cxPageDatos: TcxPageControl
         Left = 0
-        Top = 58
-        Width = 384
-        Height = 521
+        Top = 63
+        Width = 382
+        Height = 519
         Align = alClient
         TabOrder = 0
         Properties.ActivePage = cxTsDatos
         Properties.CustomButtons.Buttons = <>
         Properties.NavigatorPosition = npRightBottom
-        ExplicitHeight = 453
-        ClientRectBottom = 515
+        ClientRectBottom = 513
         ClientRectLeft = 2
-        ClientRectRight = 382
-        ClientRectTop = 31
+        ClientRectRight = 376
+        ClientRectTop = 27
         object cxTsDatos: TcxTabSheet
           Caption = 'Materiales por Orden'
           ImageIndex = 0
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 416
           object dxLYCDatos: TdxLayoutControl
             Left = 0
-            Top = 468
-            Width = 380
+            Top = 470
+            Width = 374
             Height = 16
             Align = alBottom
             TabOrder = 0
             Visible = False
             LayoutLookAndFeel = UDMConection.dxStyleForms
-            ExplicitTop = 400
             object dxLyDatos: TdxLayoutGroup
               AlignHorz = ahLeft
               AlignVert = avTop
@@ -345,11 +324,10 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
             AlignWithMargins = True
             Left = 3
             Top = 3
-            Width = 374
-            Height = 424
+            Width = 368
+            Height = 426
             Align = alClient
             TabOrder = 1
-            ExplicitHeight = 356
             object cxGridMateriales: TcxGridDBTableView
               Navigator.Buttons.CustomButtons = <>
               OnEditKeyDown = cxGridMaterialesEditKeyDown
@@ -389,16 +367,15 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
           end
           object pnl1: TPanel
             Left = 0
-            Top = 430
-            Width = 380
+            Top = 432
+            Width = 374
             Height = 38
             Align = alBottom
             TabOrder = 2
             Visible = False
-            ExplicitTop = 362
             object btnSaveChanges: TcxButton
               AlignWithMargins = True
-              Left = 262
+              Left = 256
               Top = 4
               Width = 114
               Height = 30
@@ -412,8 +389,8 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       object dxDockBar1: TdxBarDockControl
         Left = 0
         Top = 0
-        Width = 384
-        Height = 58
+        Width = 382
+        Height = 63
         Align = dalTop
         BarManager = dxBarManager1
       end
@@ -443,7 +420,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
         Left = 3
         Top = 15
         Width = 267
-        Height = 123
+        Height = 117
         Align = alClient
         TabOrder = 0
         LayoutLookAndFeel = UDMConection.dxStyleForms
@@ -520,14 +497,10 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
         Left = 3
         Top = 15
         Width = 267
-        Height = 409
+        Height = 403
         Align = alClient
         TabOrder = 0
         LayoutLookAndFeel = UDMConection.dxStyleForms
-        ExplicitLeft = 2
-        ExplicitTop = 4
-        ExplicitWidth = 269
-        ExplicitHeight = 422
         object imgFoto: TcxDBImage
           Left = 11
           Top = 11
@@ -684,7 +657,6 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
     Contexts = <>
     TabOrder = 6
     TabStop = False
-    ExplicitWidth = 1329
     object dxRibbon1Tab1: TdxRibbonTab
       Active = True
       Caption = 'Inicio'
@@ -700,13 +672,12 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
   object cxSplitter1: TcxSplitter
     Left = 295
     Top = 131
-    Width = 6
+    Width = 5
     Height = 612
     Hint = 'Mostrar/Ocultar datos del empleado y semana de trabajo'
     HotZoneClassName = 'TcxMediaPlayer9Style'
     ShowHint = True
     ParentShowHint = False
-    ExplicitHeight = 544
   end
   object dxBarManager1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET
@@ -720,8 +691,8 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       2)
     Categories.Visibles = (
       True)
-    ImageOptions.Images = UDMConection.cxMizton16
-    ImageOptions.LargeImages = UDMConection.cxMizton32
+    ImageOptions.Images = UDMConection.cxImgListFlat16
+    ImageOptions.LargeImages = UDMConection.cxImgListFlat32
     PopupMenuLinks = <>
     UseSystemFont = True
     Left = 592
@@ -843,7 +814,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Visible = ivAlways
       ButtonStyle = bsDropDown
       DropDownMenu = dxPopupTipo
-      LargeImageIndex = 4
+      LargeImageIndex = 17
       ShortCut = 16462
       OnClick = dxButtonNuevoClick
     end
@@ -862,7 +833,8 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Category = 0
       Hint = 'Buscar Orden'
       Visible = ivAlways
-      ImageIndex = 10
+      ImageIndex = 29
+      LargeImageIndex = 29
       ShortCut = 16450
       OnClick = dxBButtonBuscarClick
     end
@@ -871,7 +843,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Category = 0
       Hint = 'Eliminar Orden'
       Visible = ivAlways
-      ImageIndex = 11
+      ImageIndex = 25
       LargeImageIndex = 11
       ShortCut = 46
       OnClick = dxBButtonEliminarClick
@@ -891,7 +863,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Category = 0
       Hint = 'Actualizar'
       Visible = ivAlways
-      LargeImageIndex = 12
+      LargeImageIndex = 18
       ShortCut = 116
       OnClick = dxButtonActualizarClick
     end
@@ -922,7 +894,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Category = 0
       Hint = 'Generar reporte de Materiales'
       Visible = ivAlways
-      LargeImageIndex = 15
+      LargeImageIndex = 13
       ShortCut = 16464
       OnClick = dxButtonExportarClick
     end
@@ -937,14 +909,16 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Category = 0
       Hint = 'Ver materiales'
       Visible = ivNever
-      LargeImageIndex = 13
+      LargeImageIndex = 7
+      SyncImageIndex = False
+      ImageIndex = 7
     end
     object btnadd: TdxBarLargeButton
       Caption = 'A'#241'adir'
       Category = 0
       Hint = 'A'#241'adir'
       Visible = ivAlways
-      LargeImageIndex = 4
+      LargeImageIndex = 17
       OnClick = btnaddClick
       AutoGrayScale = False
     end
@@ -953,7 +927,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Category = 0
       Hint = 'Quitar'
       Visible = ivAlways
-      LargeImageIndex = 11
+      LargeImageIndex = 25
       OnClick = btnDeleteClick
       AutoGrayScale = False
     end
@@ -971,7 +945,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Category = 0
       Hint = 'Actualizar'
       Visible = ivAlways
-      LargeImageIndex = 12
+      LargeImageIndex = 18
       OnClick = btnRefreshClick
       AutoGrayScale = False
     end
@@ -980,7 +954,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Category = 0
       Hint = 'Exportar Grilla a Excel'
       Visible = ivAlways
-      LargeImageIndex = 15
+      LargeImageIndex = 13
       OnClick = btnExport2Click
       SyncImageIndex = False
       ImageIndex = 15
@@ -990,7 +964,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Category = 0
       Hint = 'Generar plantilla Par'#225'metros El'#233'ctricos'
       Visible = ivAlways
-      LargeImageIndex = 15
+      LargeImageIndex = 13
       OnClick = btnParElectricosClick
     end
     object dxButtonCObre: TdxBarButton
@@ -1012,7 +986,7 @@ object FrmMaterialesxFolios: TFrmMaterialesxFolios
       Category = 0
       Hint = 'Generar plantilla Datos Generales'
       Visible = ivAlways
-      LargeImageIndex = 15
+      LargeImageIndex = 13
       OnClick = btnDatosGralesClick
     end
   end

@@ -18,17 +18,33 @@ object FrmSelExpediente: TFrmSelExpediente
   TextHeight = 13
   object lstExpedientes: TcxListView
     Left = 0
-    Top = 63
+    Top = 84
     Width = 476
-    Height = 354
+    Height = 333
     Align = alClient
     Columns = <>
     LargeImages = UDMConection.cxImgListFlat32
     SmallImages = UDMConection.cxMizton16
     TabOrder = 0
     OnDblClick = lstExpedientesDblClick
-    ExplicitTop = 90
-    ExplicitHeight = 333
+    ExplicitTop = 63
+    ExplicitHeight = 354
+  end
+  object cbbVista: TcxComboBox
+    Left = 0
+    Top = 63
+    Align = alTop
+    Properties.Items.Strings = (
+      'Iconos'
+      'Iconos Peque'#241'os'
+      'Lista')
+    Properties.OnChange = cbbVistaPropertiesChange
+    TabOrder = 5
+    Text = 'cbbVista'
+    ExplicitLeft = 184
+    ExplicitTop = 216
+    ExplicitWidth = 121
+    Width = 476
   end
   object zPersonal: TUniQuery
     Left = 280

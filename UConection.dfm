@@ -9582,10 +9582,12 @@ object UDMConection: TUDMConection
     Port = 3306
     Database = 'Mizton'
     SpecificOptions.Strings = (
-      'MySQL.ConnectionTimeout=60')
+      'MySQL.ConnectionTimeout=60'
+      'MySQL.Protocol=mpTCP')
     Options.LocalFailover = True
     Username = 'root'
     Server = '104.236.201.168'
+    Connected = True
     ConnectDialog = UniConnectDialog1
     LoginPrompt = False
     OnConnectionLost = conBdConnectionLost

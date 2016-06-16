@@ -26,7 +26,7 @@ uses
   cxGridTableView, cxGridDBTableView, cxGrid, cxCheckBox, cxSplitter, Menus,
   cxButtons, cxCustomPivotGrid, cxDBPivotGrid, ZAbstractRODataset, uconection,
   cxExport, UMsgBox, ShellApi, cxGridExportLink,
-  comObj, cxExportPivotGridLink, DateUtils, uni, MemDS, DBAccess;
+  comObj, cxExportPivotGridLink, DateUtils, uni, MemDS, DBAccess, ExportaExcel;
 
 type
   TFrmConsultas = class(TForm)
@@ -73,13 +73,16 @@ type
     cxPGFieldExpediente: TcxDBPivotGridField;
     btnImprimir: TcxButton;
     dlgSave1: TSaveDialog;
+    btnAcumSemanal: TcxButton;
     procedure FormShow(Sender: TObject);
     procedure btnImprimirClick(Sender: TObject);
     procedure btnReporteClick(Sender: TObject);
     procedure cxCheckOrignPropertiesChange(Sender: TObject);
     procedure cxCheckExpedientePropertiesChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnAcumSemanalClick(Sender: TObject);
   private
+    ExApp: variant;
     { Private declarations }
   public
     { Public declarations }
@@ -91,6 +94,158 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TFrmConsultas.btnAcumSemanalClick(Sender: TObject);
+Var
+  cursor: TCursor;
+  Continuar: Boolean;
+  Rango: Variant;
+  zMat: TUniquery;
+  iniFila, iniCol, recFila, recCol, i: Integer;
+  ListaMaterial: TStringList;
+  Inicio: String;
+  Termino: String;
+  Expediente: String;
+  PersonalConteo: string;
+  colFormula:integer;
+begin
+  try
+    if cxCheckOrign.Checked then
+    begin
+      Inicio := '-1';
+      Termino := '-1';
+    end
+    else
+    begin
+      Inicio := fechaSQL(cxDateDesde.date);
+      Termino := fechaSQL(cxDateHasta.date);
+    end;
+
+    if  cxCheckExpediente.Checked then
+      Expediente := cxTextExpediente.Text
+    else
+      Expediente := '-1';
+
+    FiltrarDataset(zDatos, 'IdFolio,Expediente,Desde,Hasta,Contar', ['-1',Expediente,Inicio,Termino,'Si']);
+
+    if zDatos.Active then
+      zDatos.Refresh
+    else
+      zDatos.Open;
+
+    Try
+      Continuar     := True;
+      ExApp := CreateOleObject('Excel.Application');
+      ExApp.Visible := True;
+      ExApp.DisplayAlerts := False;
+      ExApp.Workbooks.Add;
+    Except
+      on e:Exception do
+      begin
+        Continuar := False;
+        msgBox.ShowModal('Ha ocurrido un error.','Al parecer no el equipo no tiene instalado Microsoft Excel, Contacte a su administrador de sistema para poder utilizar esta característica', cmtError, [cmbOK]);
+      end;
+    End;
+
+    //Si no se vá al chorizo, continuar
+    if Continuar then
+    begin
+      //encabezado y datos generales
+
+      ExApp.Range['B2:B2'] := 'TECNICO';
+      ExApp.Range['C2:C2'] := 'EXP.';
+      ExApp.Range['D2:D2'] := 'A.0';
+      ExApp.Range['E2:E2'] := 'FOT';
+      ExApp.Range['F2:F2'] := 'FOC';
+
+
+      FormatoTexto(ExApp.Range['B2:F2'], 'Calibri', 14, True, True);
+      ExApp.Range['A2:F2'].interior.Color := clBlack;
+      ExApp.Range['A2:F2'].Font.Color := clWhite;
+
+      Cursor := Screen.Cursor;
+      try
+        Screen.Cursor := crAppStart;
+
+        iniFila := 4;
+        InicOl := 1;
+        recFila := 0;
+        recCol := 0;
+
+        zDatos.First;
+        PersonalConteo := zDatos.FieldByName('PersonalConteo').AsString;
+        while not zDatos.Eof do
+        begin
+          if (zDatos.RecNo <> 1) and (zDatos.FieldByName('PersonalConteo').AsString <> PersonalConteo)  then
+          begin
+            PersonalConteo := zDatos.FieldByName('PersonalConteo').AsString;
+            Inc(recFila);
+          end;
+
+          //personalConteo := zDatos.FieldByName('PersonalConteo').AsString;
+          ExApp.Range['A'+ IntToStr(IniFila + recFila)] := zDatos.RecNo;
+          ExApp.Range['B'+ IntToStr(IniFila + recFila)] := zDatos.FieldByName('NombreCompletoPersonal').AsString;
+          ExApp.Range['C'+ IntToStr(IniFila + recFila)] := zDatos.FieldByName('ExpedienteCorto').AsString;
+
+          Rango := ExApp.Range['D'+ IntToStr(IniFila + recFila)];
+          if zDatos.FieldByName('LeyendaINstalacion').IsNull then
+            Rango.Value := zDatos.FieldByName('ConteoAcumulado').AsString
+          else
+            Rango.Value := 0;
+
+          Rango := ExApp.Range['E'+ IntToStr(IniFila + recFila)];
+          if zDatos.FieldByName('LeyendaINstalacion').AsString = 'FO TELMEX' then
+            Rango.Value := zDatos.FieldByName('ConteoAcumulado').AsString
+          else
+            Rango.Value := 0;
+
+          Rango := ExApp.Range['F'+ IntToStr(IniFila + recFila)];
+          if zDatos.FieldByName('LeyendaINstalacion').AsString = 'FO CARSO' then
+            Rango.Value := zDatos.FieldByName('ConteoAcumulado').AsString
+          else
+            Rango.Value := 0;
+
+          zDatos.Next;
+        end;
+
+        //Asignando ancho a las columnas
+        ExApp.Columns['A:A'].ColumnWidth := 4.29;
+        ExApp.Columns['B:B'].ColumnWidth := 33.71;
+        ExApp.Columns['C:C'].ColumnWidth := 9.14;
+        ExApp.Columns['D:D'].ColumnWidth := 4.86;
+        ExApp.Columns['E:E'].ColumnWidth := 5;
+        ExApp.Columns['F:F'].ColumnWidth := 4.86;
+
+        SetBorders(ExApp.Range['A4:F'+IntToStr(IniFila+RecFila)], xlThin, xlContinuous);
+
+        colFormula := IniFila+RecFila+1;
+                                                                   //'=SUM(R[-' + intToStr(zDatos.RecordCount) + ']C:R[-1]C)'
+        ExApp.Range['D'+inttoStr(IniFila+RecFila+1)].FormulaR1C1 := '=SUM(R[-' + intToStr(zDatos.RecordCount) + ']C:R[-1]C)';
+        ExApp.Range['E'+inttoStr(IniFila+RecFila+1)].FormulaR1C1 := '=SUM(R[-' + intToStr(zDatos.RecordCount) + ']C:R[-1]C)';
+        ExApp.Range['F'+inttoStr(IniFila+RecFila+1)].FormulaR1C1 := '=SUM(R[-' + intToStr(zDatos.RecordCount) + ']C:R[-1]C)';
+
+        SetBorders(ExApp.Range['D'+IntToStr(IniFila+RecFila+1)+':F'+IntToStr(IniFila+RecFila+1)], xlThin, xlContinuous);
+
+        ExApp.Range['F'+inttoStr(IniFila+RecFila+3)] := 'TOTAL';
+        ExApp.Range['G'+inttoStr(IniFila+RecFila+3)] := '=D'+inttoStr(IniFila+RecFila+1)+'+E'+inttoStr(IniFila+RecFila+1)+'+F'+inttoStr(IniFila+RecFila+1);
+
+        SetBorders(ExApp.Range['G'+IntToStr(IniFila+RecFila+3)+':G'+IntToStr(IniFila+RecFila+3)], xlThin, xlContinuous);
+
+        ExApp.Range['F'+inttoStr(IniFila+RecFila+3)].interior.Color := clBlack;
+        ExApp.Range['F'+inttoStr(IniFila+RecFila+3)].Font.Color := clWhite;
+
+
+        ExApp.ActiveSheet.name := 'ACUMULADO SEMANAL';
+        ExApp.ActiveWindow.DisplayGridlines := False;
+      finally
+        Screen.Cursor := Cursor;
+      end;
+    end;
+  finally
+    zDatos.Filtered := False;
+    btnReporteClick(nil);
+  end;
+end;
 
 procedure TFrmConsultas.btnImprimirClick(Sender: TObject);
 var
@@ -105,8 +260,6 @@ begin
     begin
       try
         try
-
-
           rutaArchivo := dlgSave1.FileName + '.xls';
           cxExportPivotGridToExcel(rutaArchivo, cxpivotFolios);
 

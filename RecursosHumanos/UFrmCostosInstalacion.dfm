@@ -16,9 +16,9 @@ inherited FrmCostosInstalacion: TFrmCostosInstalacion
     end
   end
   inherited cxGridGral: TcxGrid
-    Width = 808
+    Width = 809
     Height = 299
-    ExplicitWidth = 808
+    ExplicitWidth = 809
     ExplicitHeight = 299
     inherited cxGridDatos: TcxGridDBTableView
       DataController.DataSource = dsDatos
@@ -79,15 +79,15 @@ inherited FrmCostosInstalacion: TFrmCostosInstalacion
       ExplicitWidth = 816
       ExplicitHeight = 146
       ClientRectBottom = 140
-      ClientRectRight = 814
+      ClientRectRight = 810
       inherited cxTsDatos: TcxTabSheet
-        ExplicitWidth = 812
-        ExplicitHeight = 109
+        ExplicitWidth = 808
+        ExplicitHeight = 113
         inherited dxLYCDatos: TdxLayoutControl
-          Width = 812
-          Height = 109
-          ExplicitWidth = 812
-          ExplicitHeight = 109
+          Width = 808
+          Height = 113
+          ExplicitWidth = 808
+          ExplicitHeight = 113
           object cxDateFecha: TcxDBDateEdit [0]
             Left = 144
             Top = 11
@@ -225,6 +225,8 @@ inherited FrmCostosInstalacion: TFrmCostosInstalacion
       0
       0)
     inherited dxbrManager1Bar: TdxBar
+      DockedDockControl = nil
+      DockedDockingStyle = dsNone
       FloatClientWidth = 97
       FloatClientHeight = 307
     end
@@ -256,7 +258,6 @@ inherited FrmCostosInstalacion: TFrmCostosInstalacion
     Top = 280
   end
   object zTO: TUniQuery
-    Params = <>
     Left = 352
     Top = 288
   end
