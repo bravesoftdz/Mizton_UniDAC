@@ -189,21 +189,18 @@ begin
 
           Rango := ExApp.Range['D'+ IntToStr(IniFila + recFila)];
           if zDatos.FieldByName('LeyendaINstalacion').IsNull then
-            Rango.Value := zDatos.FieldByName('ConteoAcumulado').AsString
-          else
-            Rango.Value := 0;
+            Rango.Value := zDatos.FieldByName('ConteoAcumulado').AsString;
+            //Rango.Value := 0;
 
           Rango := ExApp.Range['E'+ IntToStr(IniFila + recFila)];
           if zDatos.FieldByName('LeyendaINstalacion').AsString = 'FO TELMEX' then
-            Rango.Value := zDatos.FieldByName('ConteoAcumulado').AsString
-          else
-            Rango.Value := 0;
+            Rango.Value := zDatos.FieldByName('ConteoAcumulado').AsString;
+
 
           Rango := ExApp.Range['F'+ IntToStr(IniFila + recFila)];
           if zDatos.FieldByName('LeyendaINstalacion').AsString = 'FO CARSO' then
-            Rango.Value := zDatos.FieldByName('ConteoAcumulado').AsString
-          else
-            Rango.Value := 0;
+            Rango.Value := zDatos.FieldByName('ConteoAcumulado').AsString;
+            //Rango.Value := 0;
 
           zDatos.Next;
         end;
@@ -220,9 +217,9 @@ begin
 
         colFormula := IniFila+RecFila+1;
                                                                    //'=SUM(R[-' + intToStr(zDatos.RecordCount) + ']C:R[-1]C)'
-        ExApp.Range['D'+inttoStr(IniFila+RecFila+1)].FormulaR1C1 := '=SUM(R[-' + intToStr(zDatos.RecordCount) + ']C:R[-1]C)';
-        ExApp.Range['E'+inttoStr(IniFila+RecFila+1)].FormulaR1C1 := '=SUM(R[-' + intToStr(zDatos.RecordCount) + ']C:R[-1]C)';
-        ExApp.Range['F'+inttoStr(IniFila+RecFila+1)].FormulaR1C1 := '=SUM(R[-' + intToStr(zDatos.RecordCount) + ']C:R[-1]C)';
+        ExApp.Range['D'+inttoStr(IniFila+RecFila+1)].FormulaR1C1 := '=SUM(R[-' + intToStr(RecFila+1) + ']C:R[-1]C)';
+        ExApp.Range['E'+inttoStr(IniFila+RecFila+1)].FormulaR1C1 := '=SUM(R[-' + intToStr(RecFila+1) + ']C:R[-1]C)';
+        ExApp.Range['F'+inttoStr(IniFila+RecFila+1)].FormulaR1C1 := '=SUM(R[-' + intToStr(RecFila+1) + ']C:R[-1]C)';
 
         SetBorders(ExApp.Range['D'+IntToStr(IniFila+RecFila+1)+':F'+IntToStr(IniFila+RecFila+1)], xlThin, xlContinuous);
 

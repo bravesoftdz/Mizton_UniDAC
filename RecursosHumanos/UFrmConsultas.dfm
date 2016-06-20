@@ -25,7 +25,6 @@ object FrmConsultas: TFrmConsultas
     Align = alLeft
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = 2
     object cxGboxFecha: TcxGroupBox
       AlignWithMargins = True
       Left = 11
@@ -309,8 +308,6 @@ object FrmConsultas: TFrmConsultas
       Caption = '&Rep. Acumulado Semanal'
       TabOrder = 8
       OnClick = btnAcumSemanalClick
-      ExplicitLeft = 17
-      ExplicitTop = 558
     end
   end
   object cxSplitter1: TcxSplitter
